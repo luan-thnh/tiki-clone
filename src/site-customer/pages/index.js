@@ -1,0 +1,402 @@
+function includeHTML() {
+  var z, i, elmnt, file, xhttp;
+  /*loop through a collection of all HTML elements:*/
+  z = document.getElementsByTagName('*');
+  for (i = 0; i < z.length; i++) {
+    elmnt = z[i];
+    /*search for elements with a certain atrribute:*/
+    file = elmnt.getAttribute('include-html');
+    if (file) {
+      /*make an HTTP request using the attribute value as the file name:*/
+      xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function () {
+        if (this.readyState == 4) {
+          if (this.status == 200) {
+            elmnt.innerHTML = this.responseText;
+          }
+          if (this.status == 404) {
+            elmnt.innerHTML = 'Page not found.';
+          }
+          /*remove the attribute, and call this function once more:*/
+          elmnt.removeAttribute('include-html');
+          includeHTML();
+        }
+      };
+      xhttp.open('GET', file, true);
+      xhttp.send();
+      /*exit the function:*/
+      return;
+    }
+  }
+}
+
+function generateProductJson() {
+  const DATA_CATEGORIES = JSON.parse(localStorage.getItem('data_categories')).categories;
+  const categoriesId = DATA_CATEGORIES.map((obj) => obj.id);
+  const array = [];
+  const shopNames = [
+    'ElectroGadget',
+    'TechHaven',
+    'GizmoGalaxy',
+    'SmartChoice',
+    'MegaTech',
+    'SuperStore',
+    'GeekGoods',
+    'TechTreasure',
+    'InnovateHub',
+    'EpicElectronics',
+    'GadgetGenius',
+    'DigitalDreams',
+    'WonderTech',
+    'FuturisticFinds',
+    'GizmoHub',
+    'NextLevelTech',
+    'GadgetSphere',
+    'TechOasis',
+    'StarTech',
+    'DigitalEmporium',
+    'TechVoyage',
+    'GadgetBoutique',
+    'FutureFinds',
+    'SmartGizmos',
+    'TechWonders',
+    'GizmoTreasures',
+    'InfiniteInnovations',
+    'GadgetGalore',
+    'TechHarbor',
+    'DreamTech',
+    'EcoGizmos',
+    'ModernMarvels',
+    'SmartSpark',
+    'TechVista',
+    'GadgetVerse',
+    'TheGizmoSpot',
+    'InnovativeInsights',
+    'TechJunction',
+    'QuantumGadgets',
+    'TechNest',
+    'GizmoRadar',
+    'ProTech',
+    'PrimeGizmos',
+    'GadgetVortex',
+    'EurekaTech',
+    'TechMatrix',
+    'GizmoFusion',
+    'SmartSync',
+    'TechNova',
+    'GadgetSavvy',
+  ];
+  const adjectives = ['New', 'Latest', 'Advanced', 'Premium', 'Luxury', 'High-Quality', 'Durable', 'Affordable'];
+  const brands = [
+    'Apple',
+    'Samsung',
+    'Sony',
+    'LG',
+    'Nike',
+    'Adidas',
+    'Puma',
+    'Under Armour',
+    'Microsoft',
+    'Dell',
+    'HP',
+    'Lenovo',
+    'Acer',
+    'Asus',
+    'Toshiba',
+    'Panasonic',
+    'Sharp',
+    'Philips',
+    'JBL',
+    'Bose',
+  ];
+  const categories = [
+    'Phone',
+    'Laptop',
+    'TV',
+    'Headphones',
+    'Speakers',
+    'Shoes',
+    'Jacket',
+    'Shirt',
+    'Tablet',
+    'Desktop',
+    'Monitor',
+    'Keyboard',
+    'Mouse',
+    'Printer',
+    'Camera',
+    'Smartwatch',
+    'Fitness Tracker',
+    'Drone',
+    'Game Console',
+    'VR Headset',
+    'Router',
+    'Smart Home Hub',
+    'Smart Thermostat',
+    'Smart Lock',
+    'Smart Light Bulb',
+  ];
+
+  for (let i = 0; i < 3000; i++) {}
+
+  for (let i = 0; i < 3000; i++) {
+    const randomAdjective = adjectives[Math.floor(Math.random() * adjectives.length)];
+    const randomBrand = brands[Math.floor(Math.random() * brands.length)];
+    const randomCategory = categories[Math.floor(Math.random() * categories.length)];
+    const productName = `${randomAdjective} ${randomBrand} ${randomCategory}`;
+    const priceProduct = Math.floor(Math.random() * 999) * 1000;
+    const discountProduct = Math.floor(Math.random() * 100) % 2 === 0 ? 0 : Math.floor(Math.random() * 100);
+    const priceDiscount = priceProduct * (1 - discountProduct / 100);
+    const shopName = shopNames[Math.floor(Math.random() * shopNames.length)];
+    const categoryId = categoriesId[Math.floor(Math.random() * categoriesId.length)];
+    const rating = Math.ceil((Math.random() * 5).toFixed(2));
+
+    array.push({
+      id: i + 1,
+      category_id: categoryId,
+      name_product: `${productName}`,
+      image_url: `https://source.unsplash.com/random/750x750?products=${i + 1}`,
+      image_list: [
+        'https://source.unsplash.com/random/750x750?products=99991',
+        'https://source.unsplash.com/random/750x750?products=99992',
+        'https://source.unsplash.com/random/750x750?products=99993',
+        'https://source.unsplash.com/random/750x750?products=99994',
+      ],
+      rating: rating,
+      sold_product: Math.floor(Math.random() * 3000) >= 1000 ? '1000+' : Math.floor(Math.random() * 3000),
+      shop_name: shopName,
+      price_product: priceProduct,
+      price_discount: parseInt(priceDiscount.toFixed(0)),
+      discount_product: `${discountProduct === 0 ? 0 : discountProduct}%`,
+      delivery_day: `Giao thứ ${Math.ceil(Math.random() * 7)}, ngày ${Math.floor(Math.random() * 30)}/${Math.ceil(
+        Math.random() * 12
+      )}`,
+      delivery_price: Math.floor(Math.random() * 25) * 1000,
+      limit_product: Math.ceil(Math.random() * 1000),
+    });
+  }
+
+  localStorage.setItem('data_product', JSON.stringify(array));
+}
+
+generateProductJson();
+
+function generateCategoriesJson() {
+  const categories = {
+    outstanding: [
+      {
+        id: 1,
+        name: 'Tiki ChatGPT',
+        icon: 'https://salt.tikicdn.com/cache/100x100/ts/upload/a0/c9/78/cddabc413834de509f40455498c7ff47.png.webp',
+      },
+      {
+        id: 2,
+        name: 'Astra Reward',
+        icon: 'https://salt.tikicdn.com/cache/100x100/ts/upload/cb/64/f7/0ebb0ae297f052e34a8161c9bf8efb96.png.webp',
+      },
+      {
+        id: 3,
+        name: 'Tiki Exchange',
+        icon: 'https://salt.tikicdn.com/cache/100x100/ts/upload/44/58/fc/804a2dfd610e9075ad5a8f0d13f2b21a.png.webp',
+      },
+      {
+        id: 4,
+        name: 'Tiki ChatGPT',
+        icon: 'https://salt.tikicdn.com/cache/100x100/ts/upload/a0/c9/78/cddabc413834de509f40455498c7ff47.png.webp',
+      },
+      {
+        id: 5,
+        name: 'Giá Rẻ Mỗi Ngày',
+        icon: 'https://salt.tikicdn.com/cache/100x100/ts/upload/ae/72/a3/d4503c3ece932dc8c57d2d5c97cd6ffc.png.webp',
+      },
+      {
+        id: 6,
+        name: 'Xả kho',
+        icon: 'https://salt.tikicdn.com/cache/100x100/ts/upload/3c/ce/96/db8c083610e45b78d8f7662f0013faa8.png.webp',
+      },
+      {
+        id: 7,
+        name: 'Mã giảm giá',
+        icon: 'https://salt.tikicdn.com/cache/100x100/ts/upload/20/68/cf/6d4adbdbcd1c35b0a438a655d9a420d0.png.webp',
+      },
+      {
+        id: 8,
+        name: 'Ưu đãi thẻ, ví',
+        icon: 'https://salt.tikicdn.com/cache/100x100/ts/upload/1e/27/a7/e2c0e40b6dc45a3b5b0a8e59e2536f23.png.webp',
+      },
+      {
+        id: 9,
+        name: 'Đóng tiền, nạp thẻ',
+        icon: 'https://salt.tikicdn.com/cache/100x100/ts/upload/4d/a3/cb/c86b6e4f17138195c026437458029d67.png.webp',
+      },
+      {
+        id: 10,
+        name: 'Mua trước trả sau',
+        icon: 'https://salt.tikicdn.com/cache/100x100/ts/tmp/6f/4e/41/93f72f323d5b42207ab851dfa39d44fb.png.webp',
+      },
+      {
+        id: 11,
+        name: 'Bảo hiểm Tiki360',
+        icon: 'https://salt.tikicdn.com/cache/100x100/ts/upload/6f/d0/68/76b6c01998c3f45f70b843c390097690.png.webp',
+      },
+    ],
+    categories: [
+      {
+        id: 1,
+        name: 'Đồ Chơi - Mẹ &amp; Bé',
+        icon: 'https://salt.tikicdn.com/ts/category/13/64/43/226301adcc7660ffcf44a61bb6df99b7.png',
+      },
+      {
+        id: 2,
+        name: 'NGON',
+        icon: 'https://salt.tikicdn.com/ts/category/1e/8c/08/d8b02f8a0d958c74539316e8cd437cbd.png',
+      },
+      {
+        id: 3,
+        name: 'Điện Thoại - Máy Tính Bảng',
+        icon: 'https://salt.tikicdn.com/ts/category/54/c0/ff/fe98a4afa2d3e5142dc8096addc4e40b.png',
+      },
+      {
+        id: 4,
+        name: 'Làm Đẹp - Sức Khỏe',
+        icon: 'https://salt.tikicdn.com/ts/category/73/0e/89/d7ca146de7198a6808580239e381a0c8.png',
+      },
+      {
+        id: 5,
+        name: 'Điện Gia Dụng',
+        icon: 'https://salt.tikicdn.com/ts/category/61/d4/ea/e6ea3ffc1fcde3b6224d2bb691ea16a2.png',
+      },
+      {
+        id: 6,
+        name: 'Thời trang nữ',
+        icon: 'https://salt.tikicdn.com/ts/category/55/5b/80/48cbaafe144c25d5065786ecace86d38.png',
+      },
+      {
+        id: 7,
+        name: 'Thời trang nam',
+        icon: 'https://salt.tikicdn.com/ts/category/00/5d/97/384ca1a678c4ee93a0886a204f47645d.png',
+      },
+      {
+        id: 8,
+        name: 'Giày - Dép nữ',
+        icon: 'https://salt.tikicdn.com/ts/category/cf/ed/e1/96216aae6dd0e2beeb5e91d301649d28.png',
+      },
+      {
+        id: 9,
+        name: 'Túi thời trang nữ',
+        icon: 'https://salt.tikicdn.com/ts/category/31/a7/94/6524d2ecbec216816d91b6066452e3f2.png',
+      },
+      {
+        id: 10,
+        name: 'Giày - Dép nam',
+        icon: 'https://salt.tikicdn.com/ts/category/d6/7f/6c/5d53b60efb9448b6a1609c825c29fa40.png',
+      },
+      {
+        id: 11,
+        name: 'Túi thời trang nam',
+        icon: 'https://salt.tikicdn.com/ts/category/9b/31/af/669e6a133118e5439d6c175e27c1f963.png',
+      },
+      {
+        id: 12,
+        name: 'Balo và Vali',
+        icon: 'https://salt.tikicdn.com/ts/category/3e/c0/30/1110651bd36a3e0d9b962cf135c818ee.png',
+      },
+      {
+        id: 13,
+        name: 'Phụ kiện thời trang',
+        icon: 'https://salt.tikicdn.com/ts/category/ca/53/64/49c6189a0e1c1bf7cb91b01ff6d3fe43.png',
+      },
+      {
+        id: 14,
+        name: 'Đồng hồ và Trang sức',
+        icon: 'https://salt.tikicdn.com/ts/category/8b/d4/a8/5924758b5c36f3b1c43b6843f52d6dd2.png',
+      },
+      {
+        id: 15,
+        name: 'Laptop - Máy Vi Tính - Linh kiện',
+        icon: 'https://salt.tikicdn.com/ts/category/92/b5/c0/3ffdb7dbfafd5f8330783e1df20747f6.png',
+      },
+      {
+        id: 16,
+        name: 'Nhà Cửa - Đời Sống',
+        icon: 'https://salt.tikicdn.com/ts/category/f6/22/46/7e2185d2cf1bca72d5aeac385a865b2b.png',
+      },
+      {
+        id: 17,
+        name: 'Cross Border - Hàng Quốc Tế',
+        icon: 'https://salt.tikicdn.com/ts/category/3c/e4/99/eeee1801c838468d94af9997ec2bbe42.png',
+      },
+      {
+        id: 18,
+        name: 'Bách Hóa Online',
+        icon: 'https://salt.tikicdn.com/ts/category/40/0f/9b/62a58fd19f540c70fce804e2a9bb5b2d.png',
+      },
+      {
+        id: 19,
+        name: 'Thiết Bị Số - Phụ Kiện Số',
+        icon: 'https://salt.tikicdn.com/ts/category/75/34/29/d900f845e51e95a2c41b5b035468f959.png',
+      },
+      {
+        id: 20,
+        name: 'Voucher - Dịch vụ',
+        icon: 'https://salt.tikicdn.com/ts/category/0a/c9/7b/8e466bdf6d4a5f5e14665ce56e58631d.png',
+      },
+      {
+        id: 21,
+        name: 'Ô Tô - Xe Máy - Xe Đạp',
+        icon: 'https://salt.tikicdn.com/ts/category/69/f5/36/c6cd9e2849854630ed74ff1678db8f19.png',
+      },
+      {
+        id: 22,
+        name: 'Nhà Sách Tiki',
+        icon: 'https://salt.tikicdn.com/ts/category/ed/20/60/afa9b3b474bf7ad70f10dd6443211d5f.png',
+      },
+      {
+        id: 23,
+        name: 'Điện Tử - Điện Lạnh',
+        icon: 'https://salt.tikicdn.com/ts/category/c8/82/d4/64c561c4ced585c74b9c292208e4995a.png',
+      },
+      {
+        id: 24,
+        name: 'Thể Thao - Dã Ngoại',
+        icon: 'https://salt.tikicdn.com/ts/category/0b/5e/3d/00941c9eb338ea62a47d5b1e042843d8.png',
+      },
+      {
+        id: 25,
+        name: 'Máy Ảnh - Máy Quay Phim',
+        icon: 'https://salt.tikicdn.com/ts/category/2d/7c/45/e4976f3fa4061ab310c11d2a1b759e5b.png',
+      },
+      {
+        id: 26,
+        name: 'Sản phẩm Tài chính - Bảo hiểm',
+        icon: 'https://salt.tikicdn.com/ts/category/a0/49/f4/a75f6e5dc021b0005fb8923b9846abc2.jpg',
+      },
+    ],
+  };
+  localStorage.setItem('data_categories', JSON.stringify(categories));
+}
+
+generateCategoriesJson();
+
+window.addEventListener('load', () => {
+  handleAddQuantityProduct();
+});
+
+function handleAddQuantityProduct() {
+  const LIST_CART = JSON.parse(localStorage.getItem('list_cart')) || [];
+  const USER = JSON.parse(localStorage.getItem('user')) || [];
+
+  const listCart = LIST_CART;
+  const user = USER;
+  const cartQuantity = document.querySelector('.header__cart-quantity');
+
+  localStorage.setItem('list_cart', JSON.stringify(listCart));
+
+  if (listCart.length > 0) {
+    listProductUserOrder = listCart.filter((item) => item.user_name === user.name)[0].product;
+    let sumQuantityProduct = listProductUserOrder.reduce((total, curr) => total + curr.quantity, 0);
+    cartQuantity.innerHTML = sumQuantityProduct.toString();
+  } else {
+    cartQuantity.innerHTML = '0';
+  }
+}

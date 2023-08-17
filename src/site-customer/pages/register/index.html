@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tiki - Trang đăng ký</title>
+    <link
+      rel="icon"
+      type="image/png"
+      href="https://salt.tikicdn.com/ts/upload/ab/83/f5/2ef854fb7d537b38a37213372ba5a125.png"
+      sizes="32x32"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      href="https://salt.tikicdn.com/ts/upload/d6/00/c3/9705e1aae72147da2fb398817487c083.png"
+      sizes="16x16"
+    />
+    <link rel="stylesheet" type="text/css" href="/site-customer/styles/bases/style.css" />
+    <link rel="stylesheet" type="text/css" href="/site-customer/styles/form/style.css" />
+    <link rel="stylesheet" type="text/css" href="/site-customer/styles/header/style.css" />
+    <link rel="stylesheet" type="text/css" href="/site-customer/styles/footer/style.css" />
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script
+      async
+      defer
+      crossorigin="anonymous"
+      src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v17.0&appId=818316693011582&autoLogAppEvents=1"
+      nonce="AzHTpi6f"
+    ></script>
+    <script src="/site-customer/javascript/login/google.js"></script>
+    <script src="/site-customer/javascript/login/facebook.js"></script>
+    <script src="/site-customer/pages/index.js"></script>
+  </head>
+  <body>
+    <div id="root">
+      <!-- Header -->
+      <div include-html="/site-customer/components/organisms/header/index.html"></div>
+
+      <div class="form form-regiter">
+        <form action="" id="form" class="form__main">
+          <h3 class="form__main--heading">Xin chào,</h3>
+          <p class="form__main--text">Tạo tài khoản</p>
+
+          <input type="text" class="form__input form__input-name" name="name" placeholder="Tên tài khoản" />
+          <span class="form__message-valid"></span>
+          <input type="email" class="form__input form__input-email" name="email" placeholder="Email" />
+          <span class="form__message-valid">=</span>
+          <input type="password" class="form__input form__input-password" name="password" placeholder="Mật khẩu" />
+          <span class="form__message-valid"></span>
+          <button class="form__btn-submit form__btn-register">Đăng ký</button>
+          <a href="/login" class="form__btn-switch">Đăng nhập</a>
+
+          <div class="form__footer">
+            <p class="form__text-line">
+              <span>Hoặc tiếp tục bằng</span>
+            </p>
+
+            <div class="form__login-other">
+              <div id="sign-in" class="form__btn-google" data-width="300"></div>
+              <div
+                class="fb-login-button"
+                data-width="300"
+                data-size="large"
+                data-button-type=""
+                data-layout=""
+                data-auto-logout-link="false"
+                data-use-continue-as="false"
+                data-onlogin="checkLoginState()"
+              ></div>
+            </div>
+
+            <p class="form__footer-rules">Bằng việc tiếp tục, bạn đã chấp nhận <a href="#!">điều khoản sử dụng</a></p>
+          </div>
+        </form>
+        <div class="form__thumbnail">
+          <img src="/assets/images/bg-form-1.png" alt="" />
+          <h4>Mua sắm tại Tiki</h4>
+          <p>Siêu ưu đãi mỗi ngày</p>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div style="background-color: #fff">
+        <div class="container md">
+          <div include-html="/site-customer/components/organisms/footer/index.html"></div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      includeHTML();
+    </script>
+    <script type="module" src="/site-customer/javascript/form/index.js"></script>
+    <script src="https://blueimp.github.io/JavaScript-MD5/js/md5.js"></script>
+    <!-- <script src="/site-customer/javascript/register/index.js"></script> -->
+  </body>
+</html>

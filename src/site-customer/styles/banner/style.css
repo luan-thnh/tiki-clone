@@ -1,0 +1,24 @@
+.banner {
+  position: relative;
+  z-index: 9999;
+  padding: 8px 16px;
+  background-color: #ffe880;
+}
+.banner a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 4px;
+}
+.banner__freeship {
+  width: 81px;
+}
+.banner__title {
+  font-weight: 500;
+}
+.banner__icon {
+  width: 7px;
+}
+
+/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,76 @@
+// sass .\src\site-customer\scss\components\_slider.scss .\src\site-customer\styles\slider\style.css --watch
+
+@import '../bases/abstracts';
+
+.slider {
+  margin: 0 !important;
+
+  a {
+    display: block;
+  }
+
+  .slick-dots {
+    bottom: 12px;
+
+    li {
+      width: 24px;
+      height: 2px;
+    }
+
+    li button {
+      margin: 0px 2px;
+      padding: 0;
+      width: 100%;
+      height: 2px;
+      background-color: rgba($white, 0.5);
+    }
+
+    li.slick-active button {
+      background-color: $white;
+    }
+
+    li button:before {
+      display: none;
+    }
+  }
+
+  &:hover &__arrow {
+    opacity: 1;
+  }
+
+  &__arrow {
+    width: 32px;
+    height: 32px;
+    z-index: 3;
+    opacity: 0.3;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &__arrow::before {
+    display: none;
+  }
+
+  &__arrow-prev {
+    left: 10px;
+  }
+
+  &__arrow-next {
+    right: 10px;
+
+    img {
+      transform: rotate(180deg);
+    }
+  }
+
+  &__link {
+    width: 100%;
+
+    img {
+      width: 100%;
+    }
+  }
+}

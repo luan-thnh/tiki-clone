@@ -1,0 +1,10 @@
+<<<<<<< HEAD
+# Ignore everything in this folder
+*
+# Except this file
+=======
+# Ignore everything in this folder
+*
+# Except this file
+>>>>>>> 049bee3 (setup v1)
+!.gitignore

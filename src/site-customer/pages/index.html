@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tiki - Trang chủ</title>
+    <link
+      rel="icon"
+      type="image/png"
+      href="https://salt.tikicdn.com/ts/upload/ab/83/f5/2ef854fb7d537b38a37213372ba5a125.png"
+      sizes="32x32"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      href="https://salt.tikicdn.com/ts/upload/d6/00/c3/9705e1aae72147da2fb398817487c083.png"
+      sizes="16x16"
+    />
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
+    <link rel="stylesheet" type="text/css" href="/site-customer/styles/bases/style.css" />
+    <link rel="stylesheet" type="text/css" href="/site-customer/styles/header/style.css" />
+    <link rel="stylesheet" type="text/css" href="/site-customer/styles/footer/style.css" />
+    <link rel="stylesheet" type="text/css" href="/site-customer/styles/banner/style.css" />
+    <link rel="stylesheet" type="text/css" href="/site-customer/styles/cards/style.css" />
+    <link rel="stylesheet" type="text/css" href="/site-customer/styles/slider/style.css" />
+    <link rel="stylesheet" type="text/css" href="/site-customer/pages/style.css" />
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="/site-customer/pages/index.js"></script>
+  </head>
+
+  <body>
+    <div id="root">
+      <!-- Header -->
+      <div include-html="site-customer/components/organisms/header/index.html"></div>
+
+      <main id="main" class="main">
+        <div class="container home">
+          <!-- Sidebar -->
+          <div class="home__sidebar">
+            <div class="home__sidebar-box">
+              <h4 class="home__sidebar-title">Nổi bật</h4>
+              <div class="home__sidebar-list home__outstanding"></div>
+            </div>
+            <div class="home__sidebar-box">
+              <h4 class="home__sidebar-title">Danh mục</h4>
+              <div class="home__sidebar-list home__categories"></div>
+            </div>
+            <div class="home__sidebar-box">
+              <div class="home__sidebar-list">
+                <a href="#!" class="home__sidebar-link" title="Bán hàng cùng Tiki">
+                  <img
+                    src="https://salt.tikicdn.com/cache/100x100/ts/upload/08/2f/14/fd9d34a8f9c4a76902649d04ccd9bbc5.png.webp"
+                    alt=""
+                    class="home__sidebar-icon"
+                  />
+                  <span class="home__sidebar-text">Bán hàng cùng Tiki</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="home__body">
+            <!-- Slider -->
+            <div class="home__slider">
+              <div class="home__slider-list">
+                <div class="slider slider__one">
+                  <a href="#!" class="slider__link">
+                    <img
+                      src="https://salt.tikicdn.com/cache/w1080/ts/tikimsp/d4/7a/09/a27e8ba4470c3f6159c6884859ec3fe1.png.webp"
+                      alt=""
+                    />
+                  </a>
+                  <a href="#!" class="slider__link">
+                    <img
+                      src="https://salt.tikicdn.com/cache/w1080/ts/tikimsp/35/6c/58/61212f7f5d7b83f6780e39f9418f0374.jpg.webp"
+                      alt=""
+                    />
+                  </a>
+                  <a href="#!" class="slider__link">
+                    <img
+                      src="https://salt.tikicdn.com/cache/w1080/ts/tikimsp/07/df/a1/556da3659a94abe9c953bce892691ebf.png.webp"
+                      alt=""
+                    />
+                  </a>
+                  <a href="#!" class="slider__link">
+                    <img
+                      src="https://salt.tikicdn.com/cache/w1080/ts/tikimsp/62/a1/4c/6b281bf51f22e3dadb69768cc2dfc688.png.webp"
+                      alt=""
+                    />
+                  </a>
+                  <a href="#!" class="slider__link">
+                    <img
+                      src="https://salt.tikicdn.com/cache/w1080/ts/tikimsp/de/9d/6a/3433771b443e40d8a4cebf6625e5dd44.png.webp"
+                      alt=""
+                    />
+                  </a>
+                  <a href="#!" class="slider__link">
+                    <img
+                      src="https://salt.tikicdn.com/cache/w1080/ts/tikimsp/44/89/06/5bfa1c3ba97ea917b31337cda1ea5872.png.webp"
+                      alt=""
+                    />
+                  </a>
+                  <a href="#!" class="slider__link">
+                    <img
+                      src="https://salt.tikicdn.com/cache/w1080/ts/tikimsp/e5/7a/7b/0de389bea2a0189c0ed5312688e6b27e.png.webp"
+                      alt=""
+                    />
+                  </a>
+                </div>
+              </div>
+              <div class="home__slider-image">
+                <img
+                  src="https://salt.tikicdn.com/cache/w750/ts/tikimsp/d0/65/36/8df66646edcb352324cb13767d8c4fda.png.webp"
+                  alt=""
+                />
+              </div>
+            </div>
+
+            <!-- Product list -->
+            <div include-html="site-customer/components/molecules/cards/index.html"></div>
+
+            <!-- Footer -->
+            <div include-html="site-customer/components/organisms/footer/index.html"></div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script>
+      includeHTML();
+    </script>
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script src="/site-customer/javascript/slider/index.js"></script>
+    <script src="/site-customer/javascript/product/index.js"></script>
+    <script src="/site-customer/javascript/logout/index.js"></script>
+    <script src="/site-customer/javascript/verifyToken/index.js"></script>
+  </body>
+</html>
