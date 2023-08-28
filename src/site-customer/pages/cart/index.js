@@ -6,8 +6,8 @@ const totalPrice = document.querySelector('.cart__checkout-price--final');
 const checkoutPrice = document.querySelector('.cart__checkout-price-price');
 const btnCheckout = document.querySelector('.cart__checkout-price-btn');
 
-const user = USER;
-const listCart = LIST_CART.filter((item) => item.user_name === user.name)[0].product;
+const { name: userName } = USER;
+const listCartByName = LIST_CART.filter((item) => item.user_name === userName)[0].product;
 
 let sumPrice = 0;
 let countProduct = 0;
@@ -15,7 +15,7 @@ let countProduct = 0;
 function renderCart() {
   const titleAll = document.querySelector('.cart__select-all-product');
 
-  let html = listCart
+  let html = listCartByName
     .map(
       ({ id, image_url, name_product, price_product, price_discount, quantity, shop_name }) => `
     <div class="cart__table-group" data-product-id="${id}">
@@ -92,7 +92,7 @@ function renderCart() {
   totalPrice.style.fontWeight = '400';
 
   btnCheckout.innerHTML = `Mua Hàng (0)`;
-  titleAll.innerHTML = `Tất cả (${listCart.length} sản phẩm)`;
+  titleAll.innerHTML = `Tất cả (${listCartByName.length} sản phẩm)`;
 }
 
 renderCart();
@@ -108,10 +108,10 @@ function handleRemoveProduct() {
     sumPrice -= priceElRemove;
     countProduct -= 1;
 
-    const index = listCart.findIndex((item) => item.id === parseInt(dataProductId));
-    listCart.splice(index, 1);
+    const index = listCartByName.findIndex((item) => item.id === parseInt(dataProductId));
+    listCartByName.splice(index, 1);
 
-    localStorage.setItem('list_cart', JSON.stringify([{ user_name: user.name, product: listCart }]));
+    localStorage.setItem('list_cart', JSON.stringify([{ user_name: userName, product: listCartByName }]));
     updateTotalPrice();
   }
 
@@ -206,22 +206,22 @@ function handleChangeQuantityProduct() {
   const btnPluses = document.querySelectorAll('.cart__table-quantity-btn-plus');
   const cartColMoneys = document.querySelectorAll('.cart__table-money span');
 
-  listCart.forEach(({ id, price_product, price_discount, limit_product }, index) => {
+  listCartByName.forEach(({ id, price_product, price_discount, limit_product }, index) => {
     const inputQuantity = inputQuantities[index];
     const btnMinus = btnMinuses[index];
     const btnPlus = btnPluses[index];
     const colMoney = cartColMoneys[index];
 
     function updateQuantityProduct() {
-      const index = listCart.findIndex((cart) => id === cart.id);
+      const index = listCartByName.findIndex((cart) => id === cart.id);
 
-      listCart[index].quantity = parseInt(inputQuantity.value);
+      listCartByName[index].quantity = parseInt(inputQuantity.value);
       localStorage.setItem(
         'list_cart',
         JSON.stringify([
           {
-            user_name: user.name,
-            product: listCart,
+            user_name: userName,
+            product: listCartByName,
           },
         ])
       );
@@ -265,6 +265,16 @@ function handleChangeQuantityProduct() {
       btnMinus.classList.remove('disable');
 
       updateQuantityProduct();
+
+      const checkboxes = document.querySelectorAll('.cart__checkbox-item');
+      const cartColMoneys = document.querySelectorAll('.cart__table-money span');
+
+      sumPrice = Array.from(cartColMoneys).reduce(
+        (total, money) => total + parseInt(money.getAttribute('data-money')),
+        0
+      );
+      countProduct = checkboxes.length;
+      updateTotalPrice();
 
       if (inputQuantity.value >= limit_product) {
         btnPlus.classList.add('disable');

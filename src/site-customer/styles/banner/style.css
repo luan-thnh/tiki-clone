@@ -1,6 +1,6 @@
 .banner {
   position: relative;
-  z-index: 9999;
+  z-index: 9;
   padding: 8px 16px;
   background-color: #ffe880;
 }

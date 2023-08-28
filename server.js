@@ -10,9 +10,12 @@ function router(req) {
   if (req.url === '/login') return './site-customer/pages/login/index.html';
   if (req.url === '/details') return './site-customer/pages/details/index.html';
   if (req.url === '/cart') return './site-customer/pages/cart/index.html';
+  if (req.url === '/search') return './site-customer/pages/search/index.html';
 
   // Admin
   if (req.url === '/admin') return './site-admin/pages/index.html';
+  if (req.url === '/admin/users') return './site-admin/pages/users/index.html';
+  if (req.url === '/admin/login') return './site-admin/pages/login/index.html';
 
   return req.url;
 }
@@ -43,7 +46,7 @@ const server = http.createServer((req, res) => {
   try {
     res.writeHead(200, { 'Content-Type': contentType });
     const readStream = fs.createReadStream(filePath);
-
+    // Handling error event
     readStream.on('error', (err) => {
       console.log(err);
     });
@@ -58,6 +61,6 @@ server.listen(port, (err) => {
     console.log(`Error: ${err}`);
   } else {
     console.log(`Server listening at port ${port}...`);
-    console.log(`Access :  http://localhost:3000`);
+    console.log(`Access :  Http://localhost:3000`);
   }
 });

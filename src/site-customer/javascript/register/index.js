@@ -2,10 +2,9 @@ const nameInput = document.querySelector('.form__input-name');
 const emailInput = document.querySelector('.form__input-email');
 const passwordInput = document.querySelector('.form__input-password');
 
-export default function handleRegister() {
+export default function handleRegister(NAME_LENGTH, PASSWORD_LENGTH, EMAIL_REGEX) {
   const listUser = JSON.parse(localStorage.getItem('list_user')) || [];
   const message = passwordInput.nextElementSibling;
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   const nameValue = nameInput.value;
   const emailValue = emailInput.value;
@@ -13,15 +12,18 @@ export default function handleRegister() {
 
   let index = 0;
 
-  if (nameValue.trim() && nameValue.trim().length > 3 && passwordValue.length >= 8 && emailRegex.test(emailValue)) {
+  if (
+    nameValue.trim() &&
+    nameValue.trim().length > NAME_LENGTH &&
+    passwordValue.length >= PASSWORD_LENGTH &&
+    EMAIL_REGEX.test(emailValue)
+  ) {
     const formData = {
       id: index + 1,
       name: nameValue,
       email: emailValue,
       password: md5(passwordValue),
     };
-
-    console.log(listUser);
 
     const userExisted = listUser.filter(({ name, email }) => name === nameValue || email === emailValue);
 
@@ -43,5 +45,4 @@ export default function handleRegister() {
     setTimeout(() => localStorage.removeItem('token'), 60 * 60 * 24 * 1000);
     window.location.href = '/';
   }
-  console.log(1);
 }

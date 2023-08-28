@@ -1,7 +1,6 @@
 window.addEventListener('load', () => {
   const btnLogout = document.querySelector('.header__btn-logout');
 
-
   if (btnLogout) {
     btnLogout.addEventListener('click', () => {
       localStorage.removeItem('status_login');

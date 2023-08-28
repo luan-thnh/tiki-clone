@@ -8,9 +8,7 @@ const inputQuantity = document.querySelector('.product__info-quantity-input');
 const btnPlus = document.querySelector('.product__info-quantity-btn--plus');
 const btnMinus = document.querySelector('.product__info-quantity-btn--minus');
 
-const productCurrent = PRODUCT_CURRENT;
-const listCart = LIST_CART;
-const user = USER;
+const { name: userName } = USER;
 
 window.addEventListener('load', () => {
   handleAddQuantityProduct();
@@ -20,11 +18,18 @@ window.addEventListener('load', () => {
 function handleAddQuantityProduct() {
   const cartQuantity = document.querySelector('.header__cart-quantity');
 
-  localStorage.setItem('list_cart', JSON.stringify(listCart));
-  if (listCart.length > 0) {
-    listProductUserOrder = listCart.filter((item) => item.user_name === user.name)[0].product;
-    let sumQuantityProduct = listProductUserOrder.reduce((total, curr) => total + curr.quantity, 0);
-    cartQuantity.innerHTML = sumQuantityProduct.toString();
+  localStorage.setItem('list_cart', JSON.stringify(LIST_CART));
+
+  if (LIST_CART.length > 0) {
+    const filteredCartItem = LIST_CART.find((item) => item.user_name === userName);
+
+    if (filteredCartItem) {
+      const listProductUserOrder = filteredCartItem.product;
+      const sumQuantityProduct = listProductUserOrder.reduce((total, curr) => total + curr.quantity, 0);
+      cartQuantity.innerHTML = sumQuantityProduct.toString();
+    } else {
+      cartQuantity.innerHTML = '0';
+    }
   } else {
     cartQuantity.innerHTML = '0';
   }
@@ -41,27 +46,27 @@ function handleClickBuyProduct() {
 
     const quantity = parseInt(inputQuantity.value);
 
-    const existingUserIndex = listCart.findIndex((item) => item.user_name === user.name);
+    const existingUserIndex = LIST_CART.findIndex((item) => item.user_name === userName);
 
     if (existingUserIndex !== -1) {
-      const existingProductIndex = listCart[existingUserIndex].product.findIndex(
-        (item) => item.id === productCurrent.id
+      const existingProductIndex = LIST_CART[existingUserIndex].product.findIndex(
+        (item) => item.id === PRODUCT_CURRENT.id
       );
 
       if (existingProductIndex !== -1) {
-        listCart[existingUserIndex].product[existingProductIndex].quantity += quantity;
+        LIST_CART[existingUserIndex].product[existingProductIndex].quantity += quantity;
       } else {
-        listCart[existingUserIndex].product.push({
-          ...productCurrent,
+        LIST_CART[existingUserIndex].product.push({
+          ...PRODUCT_CURRENT,
           quantity,
         });
       }
     } else {
-      listCart.push({
-        user_name: user.name,
+      LIST_CART.push({
+        user_name: userName,
         product: [
           {
-            ...productCurrent,
+            ...PRODUCT_CURRENT,
             quantity,
           },
         ],
@@ -86,8 +91,8 @@ function handleChangeQuantityProduct() {
       btnMinus.classList.add('disable');
     }
 
-    if (e.target.value > productCurrent.limit_product) {
-      e.target.value = productCurrent.limit_product;
+    if (e.target.value > PRODUCT_CURRENT.limit_product) {
+      e.target.value = PRODUCT_CURRENT.limit_product;
       btnPlus.classList.add('disable');
       btnMinus.classList.remove('disable');
     }
@@ -97,7 +102,7 @@ function handleChangeQuantityProduct() {
     inputQuantity.value = parseInt(inputQuantity.value) + 1;
     btnMinus.classList.remove('disable');
 
-    if (inputQuantity.value > productCurrent.limit_product) {
+    if (inputQuantity.value > PRODUCT_CURRENT.limit_product) {
       btnPlus.classList.add('disable');
     }
   });

@@ -1,5 +1,6 @@
 import handleLogin from '../login/index.js';
 import handleRegister from '../register/index.js';
+import { validate } from '../../../constants/validate/index.js';
 
 const form = document.querySelector('#form');
 const inputName = document.querySelector('.form__input-name');
@@ -8,6 +9,7 @@ const inputEmail = document.querySelector('.form__input-email');
 const btnSubmit = document.querySelector('.form__btn-submit');
 
 const inputs = [inputName, inputPassword, inputEmail];
+const { NAME_LENGTH, PASSWORD_LENGTH, EMAIL_REGEX } = validate;
 
 function checkInputRequired(input) {
   if (!input.value.trim()) {
@@ -18,7 +20,7 @@ function checkInputRequired(input) {
 }
 
 function checkNameLength(input) {
-  if (input.value.trim().length > 3) {
+  if (input.value.trim().length > NAME_LENGTH) {
     input.classList.remove('error');
     const message = input.nextElementSibling;
     message.innerText = '';
@@ -30,7 +32,7 @@ function checkNameLength(input) {
 }
 
 function checkEmailFormat(input) {
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const emailRegex = EMAIL_REGEX;
 
   if (emailRegex.test(input.value)) {
     input.classList.remove('error');
@@ -44,7 +46,7 @@ function checkEmailFormat(input) {
 }
 
 function checkPasswordLength(input) {
-  if (input.value.length >= 8) {
+  if (input.value.length >= PASSWORD_LENGTH) {
     input.classList.remove('error');
     const message = input.nextElementSibling;
     message.innerText = '';
@@ -98,8 +100,8 @@ form.addEventListener('submit', (e) => {
     checkInputRequired(input);
   });
 
-  if (btnSubmit.innerText.toLowerCase() === 'đăng nhập') handleLogin();
-  if (btnSubmit.innerText.toLowerCase() === 'đăng ký') handleRegister();
+  if (btnSubmit.innerText.toLowerCase() === 'đăng nhập') handleLogin(PASSWORD_LENGTH, EMAIL_REGEX);
+  if (btnSubmit.innerText.toLowerCase() === 'đăng ký') handleRegister(NAME_LENGTH, PASSWORD_LENGTH, EMAIL_REGEX);
 });
 
 setTimeout(() => localStorage.removeItem('token'), 60 * 60 * 24 * 1000);

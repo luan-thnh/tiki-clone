@@ -86,7 +86,16 @@ function generateProductJson() {
     'TechNova',
     'GadgetSavvy',
   ];
-  const adjectives = ['New', 'Latest', 'Advanced', 'Premium', 'Luxury', 'High-Quality', 'Durable', 'Affordable'];
+  const adjectives = [
+    'Mới',
+    'Mới nhất',
+    'Cao cấp',
+    'Cao cấp',
+    'Sang trọng',
+    'Chất lượng cao',
+    'Bền bỉ',
+    'Giá cả phải chăng',
+  ];
   const brands = [
     'Apple',
     'Samsung',
@@ -110,40 +119,103 @@ function generateProductJson() {
     'Bose',
   ];
   const categories = [
-    'Phone',
-    'Laptop',
-    'TV',
-    'Headphones',
-    'Speakers',
-    'Shoes',
-    'Jacket',
-    'Shirt',
-    'Tablet',
-    'Desktop',
-    'Monitor',
-    'Keyboard',
-    'Mouse',
-    'Printer',
-    'Camera',
-    'Smartwatch',
-    'Fitness Tracker',
-    'Drone',
-    'Game Console',
-    'VR Headset',
-    'Router',
-    'Smart Home Hub',
-    'Smart Thermostat',
-    'Smart Lock',
-    'Smart Light Bulb',
-  ];
+    // Danh mục "Thời trang":
+    'Áo phông nam/nữ',
+    'Quần jeans nam/nữ',
+    'Váy dạ hội',
+    'Túi xách thời trang',
+    'Đồng hồ đeo tay nam/nữ',
 
-  for (let i = 0; i < 3000; i++) {}
+    // Danh mục "Điện tử":
+    'Laptop gaming',
+    'Máy tính đồng bộ',
+    'Máy in màu đa chức năng',
+    'Máy ảnh DSLR',
+    'Điện thoại di động cao cấp',
+
+    // Danh mục "Thiết bị thông minh":
+    'Đèn nền phòng thông minh có thể điều chỉnh màu sắc',
+    'Khóa cửa vân tay thông minh',
+    'Bộ điều nhiệt và làm ấm thông minh cho gia đình',
+    'Bộ định tuyến Wi-Fi mạnh mẽ',
+    'Camera an ninh ngoài trời',
+
+    // Danh mục "Thể thao và sức khỏe":
+    'Đồng hồ đo nhịp tim và bước chạy',
+    'Bộ thiết bị tập thể dục tại nhà',
+    'Vớ chống trượt khi tập yoga',
+    'Máy chạy bộ điện tử tiện lợi',
+    'Bình nước thể thao chất liệu an toàn',
+
+    // Danh mục "Gaming":
+    'Bàn phím cơ gaming có đèn nền RGB',
+    'Chuột gaming chuyên nghiệp',
+    'Tai nghe gaming với âm thanh vòm 7.1',
+    'Ghế gaming thoải mái',
+    'Bàn điều khiển trò chơi không dây',
+
+    // Danh mục "Sức khỏe và làm đẹp":
+    'Máy massage cầm tay',
+    'Bộ dụng cụ làm móng chuyên nghiệp',
+    'Máy rửa mặt tự động',
+    'Máy sấy tóc chăm sóc tóc tốt',
+    'Máy cạo râu điện tử cao cấp',
+
+    // Danh mục "Đồ gia dụng":
+    'Nồi cơm điện tử',
+    'Bếp từ đơn',
+    'Lò vi sóng đa năng',
+    'Máy lọc không khí',
+    'Máy pha cà phê tự động',
+
+    // Danh mục "Đồ chơi":
+    'Xe đạp địa hình cho trẻ em',
+    'Búp bê cao cấp với phụ kiện',
+    'Xếp hình thông minh Montessori',
+    'Lego kiến trúc phức tạp',
+    'Xe điều khiển từ xa',
+
+    // Danh mục "Nhà cửa và nội thất":
+    'Bàn làm việc đa năng',
+    'Sofa phòng khách thư giãn',
+    'Kệ sách treo tường',
+    'Bộ chăn ga gối đệm cao cấp',
+    'Bộ nồi chảo chống dính không khói',
+
+    // Danh mục "Dụng cụ nghề nghiệp":
+    'Máy hàn mini',
+    'Kìm mỏ vịt đa năng',
+    'Bộ dụng cụ điện cầm tay',
+    'Máy khoan đa năng',
+    'Dao cắt chất liệu cao cấp',
+
+    // Danh mục "Vui chơi và giải trí":
+    'Vé xem phim tại rạp',
+    'Vé tham quan triển lãm nghệ thuật',
+    'Bộ bài Magic chuyên nghiệp',
+    'Bảo trì thẻ thư viện',
+    'Vé tham gia công viên giải trí',
+
+    // Danh mục "Sản phẩm thú cưng":
+    'Lồng cho chó hoặc mèo',
+    'Thức ăn ngon miệng cho chó',
+    'Đồ chơi interative cho mèo',
+    'Bộ chăm sóc lông thú cưng',
+    'Vòng cổ da thời trang cho chó',
+
+    // Danh mục "Sản phẩm làm vườn":
+    'Hạt giống rau sạch hữu cơ',
+    'Bộ dụng cụ làm vườn',
+    'Hệ thống tưới tự động',
+    'Ghế nghỉ dưỡng ngoài trời',
+    'Bể thủy sinh trang trí phòng khách',
+  ];
 
   for (let i = 0; i < 3000; i++) {
     const randomAdjective = adjectives[Math.floor(Math.random() * adjectives.length)];
     const randomBrand = brands[Math.floor(Math.random() * brands.length)];
     const randomCategory = categories[Math.floor(Math.random() * categories.length)];
-    const productName = `${randomAdjective} ${randomBrand} ${randomCategory}`;
+    const productName = `${randomCategory} ${randomBrand}`;
     const priceProduct = Math.floor(Math.random() * 999) * 1000;
     const discountProduct = Math.floor(Math.random() * 100) % 2 === 0 ? 0 : Math.floor(Math.random() * 100);
     const priceDiscount = priceProduct * (1 - discountProduct / 100);

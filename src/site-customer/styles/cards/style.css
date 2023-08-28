@@ -1,7 +1,7 @@
 .card--title {
   font-family: Inter, Helvetica, Arial, sans-serif;
   font-weight: 600;
-  font-size: 16px;
+  font-size: 15px;
   line-height: 1.5;
   color: #27272a;
   padding: 12px 16px;
@@ -21,7 +21,7 @@
   right: auto;
   bottom: auto;
   left: auto;
-  z-index: 999;
+  z-index: 9;
   background-color: #f5f5fa;
   padding-top: 0;
   transition: all 1s ease 0s;
@@ -32,7 +32,7 @@
   right: auto;
   bottom: auto;
   left: auto;
-  z-index: 999;
+  z-index: 9;
   padding-top: 16px;
   margin: auto;
   width: 1138px;
@@ -189,7 +189,7 @@
 .card__item-price {
   font-family: Inter, Helvetica, Arial, sans-serif;
   font-weight: 500;
-  font-size: 16px;
+  font-size: 15px;
   line-height: 1.5;
   color: #38383d;
   margin-top: 6px;
@@ -224,7 +224,7 @@
   border: 1px solid #0a68ff;
   font-family: Inter, Helvetica, Arial, sans-serif;
   font-weight: 400;
-  font-size: 16px;
+  font-size: 15px;
   line-height: 1.5;
   color: #0a68ff;
   width: 240px;
